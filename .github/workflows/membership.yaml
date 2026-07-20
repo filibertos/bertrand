@@ -1,11 +1,7 @@
 name: membership
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'src/features/membership/**'
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   security:
