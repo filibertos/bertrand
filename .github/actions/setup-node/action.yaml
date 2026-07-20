@@ -10,6 +10,10 @@ inputs:
     description: 'cache to use (npm/yarn)'
     required: false
     default: 'npm'
+  clean-install:
+    description: 'if a clean has to be performed'
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
