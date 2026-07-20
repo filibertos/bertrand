@@ -18,13 +18,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: 'validate cache input'
-      shell: bash
-      run: |
-        if [[ "${{ inputs.cache }}" != "npm" && "${{ inputs.cache }}" != "yarn"]]
-          echo "Error. Cache must be either 'npm' or 'yarn'"
-          exit 1
-        fi
+    #- name: 'validate cache input'
+    #  shell: bash
+    #  run: |
+    #    if [[ "${{ inputs.cache }}" != "npm" && "${{ inputs.cache }}" != "yarn" ]]
+    #      echo "Error. Cache must be either 'npm' or 'yarn'"
+    #      exit 1
+    #    fi
 
     - name: 'setup node'
       uses: actions/setup-node@v4
