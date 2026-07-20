@@ -1,11 +1,24 @@
 name: aaa.yaml
 on:
-  push:
-    paths:
-      - ".github/workflows/aaa.yaml"
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      feature:
+        description: "which feature to deploy"
+        required: true
+        type: choice
+        options:
+          - classschedule
+          - membership
+          - training
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: ls -al
+  classschedule:
+    if: github.event.inputs.feature == 'classschedule'
+    uses: ./.github/workflows/clclassschedule.yaml
+
+  membership:
+    if: github.event.inputs.feature == 'membership'
+    uses: ./.github/workflows/membership.yaml
+
+  training:
+    if: github.event.inputs.feature == 'training'
+    uses: ./.github/workflows/training.yaml
