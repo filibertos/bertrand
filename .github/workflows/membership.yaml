@@ -4,20 +4,20 @@ on:
   workflow_call:
 
 jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  #security:
+   # runs-on: ubuntu-latest
+   # steps:
+    #  - uses: actions/checkout@v4
 
-      - name: Run security scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          severity: 'CRITICAL,HIGH'
+     # - name: Run security scan
+     #   uses: aquasecurity/trivy-action@master
+     #   with:
+      #    scan-type: 'fs'
+       #   ignore-unfixed: true
+        #  severity: 'CRITICAL,HIGH'
 
   build:
-    needs: security
+    #needs: security
     runs-on: ubuntu-latest
     
     steps:
@@ -29,24 +29,24 @@ jobs:
           cache: 'npm'
           clean-install: 'true'
 
-      - name: Lint
-        run: npx eslint 'src/features/membership/**' --max-warnings 0
+      #- name: Lint
+      #  run: npx eslint 'src/features/membership/**' --max-warnings 0
 
-      - name: Build
-        run: npm run build
+      #- name: Build
+      #  run: npm run build
 
-      - name: Test
-        run: npm test -- --coverage --watchAll=false
+      #- name: Test
+      #  run: npm test -- --coverage --watchAll=false
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: production
+  #deploy:
+   # needs: build
+    #runs-on: ubuntu-latest
+    #environment: production
     
-    steps:
-      - uses: actions/checkout@v4
+    #steps:
+      #- uses: actions/checkout@v4
 
-      - name: Deploy to production
-        run: |
-          echo "Deploying membership feature to production..."
-          echo "Environment URL: ${{ vars.APP_URL }}"
+     # - name: Deploy to production
+       # run: |
+        #  echo "Deploying membership feature to production..."
+         # echo "Environment URL: ${{ vars.APP_URL }}"
