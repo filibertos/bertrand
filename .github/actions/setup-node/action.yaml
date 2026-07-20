@@ -11,33 +11,33 @@ inputs:
     required: false
     default: 'npm'
 
-  runs:
-    using: "composite"
-    steps:
-      - name: 'validate cache input'
-        shell: bash
-        run: |
-          if [[ "${{ inputs.cache }}" != "npm" && "${{ inputs.cache }}" != "yarn"]]
-            echo "Error. Cache must be either 'npm' or 'yarn'"
-            exit 1
-          fi
+runs:
+  using: "composite"
+  steps:
+    - name: 'validate cache input'
+      shell: bash
+      run: |
+        if [[ "${{ inputs.cache }}" != "npm" && "${{ inputs.cache }}" != "yarn"]]
+          echo "Error. Cache must be either 'npm' or 'yarn'"
+          exit 1
+        fi
 
-      - name: 'setup node'
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-          cache: ${{ inputs.cache }}
+    - name: 'setup node'
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: ${{ inputs.cache }}
 
-      - name: 'install dependencies'
-        shell: bash
-        run: |
-          if [ "${{ inputs.clean-install }}" = "true" ]; then
-            rm -rf node_modules package-lock.json
-            npm install
-          else
-            npm ci
-          fi
+    - name: 'install dependencies'
+      shell: bash
+      run: |
+        if [ "${{ inputs.clean-install }}" = "true" ]; then
+          rm -rf node_modules package-lock.json
+          npm install
+        else
+          npm ci
+        fi
 
-      - name: 'build'
-        shell: bash
-        run: npm run build
+    - name: 'build'
+      shell: bash
+      run: npm run build
