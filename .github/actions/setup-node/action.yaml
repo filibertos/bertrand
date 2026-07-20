@@ -42,6 +42,6 @@ runs:
           npm ci
         fi
 
-    - name: 'build'
-      shell: bash
-      run: npm run build
+    #- name: 'build'
+    #  shell: bash
+    #  run: npm run build
