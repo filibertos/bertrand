@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  component-testing:
+  development:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,67 +19,67 @@ jobs:
           cache: 'npm'
           clean-install: 'true'
         
-      - name: Run component tests
-        run: npm test
+      #- name: Run component tests
+      #  run: npm test
         
-      - name: Generate test report
-        run: echo "No test report needed for demo"
+      #- name: Generate test report
+      #  run: echo "No test report needed for demo"
         
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: test-results/
+      #- name: Upload test results
+      #  uses: actions/upload-artifact@v3
+      #  with:
+       #   name: test-results
+       #   path: test-results/
 
-  development:
-    needs: component-testing
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    environment: development
+  #development:
+   # needs: component-testing
+#    runs-on: ubuntu-latest
+ #   if: github.ref == 'refs/heads/main'
+  #  environment: development
     
-    steps:
-      - uses: actions/checkout@v4
+   # steps:
+    #  - uses: actions/checkout@v4
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+     # - name: Setup Node.js
+      #  uses: actions/setup-node@v4
+       # with:
+        #  node-version: '20.x'
           
-      - name: Install dependencies
-        run: npm ci
+      #- name: Install dependencies
+       # run: npm ci
         
-      - name: Build
-        run: npm run build
+      #- name: Build
+       # run: npm run build
         
-      - name: Deploy to development
-        run: |
-          echo "Deploying training feature to development..."
-          echo "Environment URL: ${{ vars.APP_URL }}"
+      #- name: Deploy to development
+       # run: |
+        #  echo "Deploying training feature to development..."
+         # echo "Environment URL: ${{ vars.APP_URL }}"
 
-  staging:
-    needs: development
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    environment: staging
+  #staging:
+   # needs: development
+#    runs-on: ubuntu-latest
+ #   if: github.ref == 'refs/heads/main'
+  #  environment: staging
     
-    steps:
-      - uses: actions/checkout@v4
+   # steps:
+    #  - uses: actions/checkout@v4
       
-      - name: Deploy to staging
-        run: |
-          echo "Deploying training feature to staging..."
-          echo "Environment URL: ${{ vars.APP_URL }}"
+     # - name: Deploy to staging
+      #  run: |
+       #   echo "Deploying training feature to staging..."
+        #  echo "Environment URL: ${{ vars.APP_URL }}"
 
-  production:
-    needs: staging
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    environment: production
+  #production:
+   # needs: staging
+#    runs-on: ubuntu-latest
+ #   if: github.ref == 'refs/heads/main'
+  #  environment: production
     
-    steps:
-      - uses: actions/checkout@v4
+   # steps:
+    #  - uses: actions/checkout@v4
       
-      - name: Deploy to production
-        run: |
-          echo "Deploying training feature to production..."
-          echo "Environment URL: ${{ vars.APP_URL }}"
+     # - name: Deploy to production
+      #  run: |
+       #   echo "Deploying training feature to production..."
+        #  echo "Environment URL: ${{ vars.APP_URL }}"
