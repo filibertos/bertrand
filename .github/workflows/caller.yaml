@@ -1,4 +1,4 @@
-name: aaa.yaml
+name: caller.yaml
 on:
   workflow_dispatch:
     inputs:
@@ -7,13 +7,13 @@ on:
         required: true
         type: choice
         options:
-          - classschedule
+          - class_schedule
           - membership
           - training
 jobs:
   classschedule:
-    if: github.event.inputs.feature == 'classschedule'
-    uses: ./.github/workflows/clclassschedule.yaml
+    if: github.event.inputs.feature == 'class_schedule'
+    uses: ./.github/workflows/class_schedule.yaml
 
   membership:
     if: github.event.inputs.feature == 'membership'

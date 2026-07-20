@@ -1,4 +1,4 @@
-name: classschedule
+name: class_schedule
 
 on:
   push:
