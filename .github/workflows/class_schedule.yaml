@@ -10,15 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: ./.github/actions/setup-node
         with:
           node-version: '24.x'
           cache: 'npm'
           clean-install: 'false'
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Run lint
         run: NODE_OPTIONS=--experimental-vm-modules npm run lint
