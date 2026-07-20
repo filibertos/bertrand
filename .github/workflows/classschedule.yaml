@@ -1,4 +1,4 @@
-name: Class Schedule CI/CD
+name: classschedule
 
 on:
   push:

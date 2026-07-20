@@ -1,4 +1,4 @@
-name: Membership Management Pipeline
+name: membership
 
 on:
   push:

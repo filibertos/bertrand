@@ -1,4 +1,4 @@
-name: Personal Training Feature
+name: training
 
 on:
   push:
